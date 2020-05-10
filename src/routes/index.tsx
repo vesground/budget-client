@@ -1,14 +1,14 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 // Component
-import Login from 'routes/Login/';
-import LandingPage from 'routes/LandingPage/';
+import Header from 'layout/Header';
+import Login from 'routes/Login';
+import LandingPage from 'routes/LandingPage';
 
 // Some folks find value in a centralized route config.
 // A route config is just data. React is great at mapping
@@ -28,25 +28,23 @@ const routes = [
   },
 ];
 
-export default function RouteConfigExample() {
+function RouteWithHeader({ path, component: Component }: { path: string, component: any }) {
   return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/">Landing Page</Link>
-          </li>
-        </ul>
+    <Route path={path}>
+      <Header />
+      <Component />
+    </Route>
+  );
+}
 
-        <Switch>
-          {routes.map((route, i) => (
-            <Route key={i} {...route} />
-          ))}
-        </Switch>
-      </div>
-    </Router>
+export default function Routes() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        {routes.map((route, i) => (
+          <RouteWithHeader key={i} {...route} />
+        ))}
+      </Switch>
+    </BrowserRouter>
   );
 }

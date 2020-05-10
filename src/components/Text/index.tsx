@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Styles
-import './index.scss';
+import './index.css';
 
 const Text = ({ children, ...props }: { children: string, props: any }) => {
   return (
