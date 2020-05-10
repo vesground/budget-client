@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Styles
-import './index.css';
+import './index.scss';
 
 const Login = () => {
   return (
