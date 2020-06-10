@@ -3,7 +3,7 @@ import React from 'react';
 //Styles
 import './index.scss';
 
-const LandingPage = () => {
+function LandingPage() {
   return (
     <p className='no'>
       Landing page here

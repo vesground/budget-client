@@ -7,8 +7,13 @@ import {
 
 // Component
 import Header from 'layout/Header';
-import Login from 'routes/Login';
-import LandingPage from 'routes/LandingPage';
+
+// Routes
+import publicRoutes from 'routes/publicRoutes';
+import privateRoutes from 'routes/privateRoutes';
+
+// Services
+import useAuth from 'services/useAuth';
 
 // Some folks find value in a centralized route config.
 // A route config is just data. React is great at mapping
@@ -17,27 +22,21 @@ import LandingPage from 'routes/LandingPage';
 // Our route config is just an array of logical "routes"
 // with `path` and `component` props, ordered the same
 // way you'd do inside a `<Switch>`.
-const routes = [
-  {
-    path: "/login",
-    component: Login
-  },
-  {
-    path: "/",
-    component: LandingPage
-  },
-];
 
 function RouteWithHeader({ path, component: Component }: { path: string, component: any }) {
   return (
     <Route path={path}>
-      <Header />
+      <Header role='role' />
       <Component />
     </Route>
   );
 }
 
 export default function Routes() {
+  const isAuthenticated = useAuth();
+  // const isAuthenticated = false;
+  const routes = isAuthenticated ? privateRoutes : publicRoutes;
+
   return (
     <BrowserRouter>
       <Switch>

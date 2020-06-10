@@ -7,7 +7,8 @@ import './index.scss';
 const Header = ({ role }: { role: string | undefined }) => {
   return (
     <div className='tr-header'>
-      <Link to="/login">Login</Link>
+      <Link to="/sign-in">Sign in</Link>
+      <Link to="/sign-up">Sign up</Link>
       <Link to="/">Landing Page</Link>
       {role}
     </div>
